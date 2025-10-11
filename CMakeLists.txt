@@ -23,6 +23,15 @@ set(PROJECT_SOURCES
     mainwindow.ui
     dbmanager.cpp
     dbmanager.h
+    admindashboard.cpp
+    admindashboard.h
+    admindashboard.ui
+    facultydashboard.cpp
+    facultydashboard.h
+    facultydashboard.ui
+    studentdashboard.cpp
+    studentdashboard.h
+    studentdashboard.ui
 )
 
 # Create executable
@@ -30,6 +39,9 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(Studentmanagementsystem
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
+        admindashboard.h admindashboard.cpp admindashboard.ui
+        facultydashboard.h facultydashboard.cpp facultydashboard.ui
+        studentdashboard.h studentdashboard.cpp studentdashboard.ui
     )
 else()
     if(ANDROID)

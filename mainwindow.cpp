@@ -1,6 +1,9 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "dbmanager.h"
+#include "admindashboard.h"
+#include "facultydashboard.h"
+#include "studentdashboard.h"
 #include <QSqlQuery>
 #include <QSqlError>
 #include <QDebug>
@@ -30,11 +33,10 @@ void MainWindow::on_pushButtonLogin_clicked()
         return;
     }
 
-    // Prepare query to check user credentials
     QSqlQuery query(db.database());
     query.prepare("SELECT role_id FROM users WHERE username=:username AND password_hash=:password");
     query.bindValue(":username", username);
-    query.bindValue(":password", password); // Replace with hashed password in production
+    query.bindValue(":password", password); // replace with hashed password later
 
     if (!query.exec()) {
         ui->labelStatus->setText("❌ Query failed: " + query.lastError().text());
@@ -43,21 +45,28 @@ void MainWindow::on_pushButtonLogin_clicked()
 
     if (query.next()) {
         int roleId = query.value(0).toInt();
+
+        this->hide(); // hide login window
+
         switch (roleId) {
-        case 1:
-            ui->labelStatus->setText("✅ Admin login successful!");
-            // TODO: Open Admin Dashboard window
+        case 1: {
+            AdminDashboard *admin = new AdminDashboard();
+            admin->show();
             break;
-        case 2:
-            ui->labelStatus->setText("👨‍🏫 Faculty login successful!");
-            // TODO: Open Faculty Dashboard window
+        }
+        case 2: {
+            FacultyDashboard *faculty = new FacultyDashboard();
+            faculty->show();
             break;
-        case 3:
-            ui->labelStatus->setText("🎓 Student login successful!");
-            // TODO: Open Student Dashboard window
+        }
+        case 3: {
+            StudentDashboard *student = new StudentDashboard();
+            student->show();
             break;
+        }
         default:
             ui->labelStatus->setText("⚠️ Unknown role ID!");
+            this->show();
             break;
         }
     } else {
