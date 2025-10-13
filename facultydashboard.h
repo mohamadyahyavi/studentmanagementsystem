@@ -12,7 +12,7 @@ class FacultyDashboard : public QWidget
     Q_OBJECT
 
 public:
-    explicit FacultyDashboard(QWidget *parent = nullptr);
+    explicit FacultyDashboard(int personId,QWidget *parent = nullptr);
     ~FacultyDashboard();
 
 private:

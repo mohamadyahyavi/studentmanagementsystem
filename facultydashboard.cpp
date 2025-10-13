@@ -1,7 +1,7 @@
 #include "facultydashboard.h"
 #include "ui_facultydashboard.h"
 
-FacultyDashboard::FacultyDashboard(QWidget *parent)
+FacultyDashboard::FacultyDashboard(int personId,QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::FacultyDashboard)
 {
