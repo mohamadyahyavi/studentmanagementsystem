@@ -11,7 +11,7 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Find Qt 6 (Widgets + SQL)
+# Find Qt (Widgets + SQL)
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets Sql)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Sql)
 
@@ -32,6 +32,8 @@ set(PROJECT_SOURCES
     studentdashboard.cpp
     studentdashboard.h
     studentdashboard.ui
+    # ✅ added here
+    # ✅ added here
 )
 
 # Create executable
@@ -39,10 +41,6 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(Studentmanagementsystem
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
-        admindashboard.h admindashboard.cpp admindashboard.ui
-        facultydashboard.h facultydashboard.cpp facultydashboard.ui
-        studentdashboard.h studentdashboard.cpp studentdashboard.ui
-        gradedelegate.h gradedelegate.cpp
     )
 else()
     if(ANDROID)
@@ -56,7 +54,7 @@ else()
     endif()
 endif()
 
-# Link Qt libraries (Widgets + SQL)
+# Link Qt libraries
 target_link_libraries(Studentmanagementsystem PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Sql)
 
 # macOS / iOS bundle settings
