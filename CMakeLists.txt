@@ -42,6 +42,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         admindashboard.h admindashboard.cpp admindashboard.ui
         facultydashboard.h facultydashboard.cpp facultydashboard.ui
         studentdashboard.h studentdashboard.cpp studentdashboard.ui
+        gradedelegate.h gradedelegate.cpp
+        editablequerymodel.h editablequerymodel.cpp
     )
 else()
     if(ANDROID)

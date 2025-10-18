@@ -21,3 +21,9 @@ AdminDashboard::~AdminDashboard()
 {
     delete ui;
 }
+
+void AdminDashboard::on_comboBoxAction_currentIndexChanged(int index)
+{
+
+}
+

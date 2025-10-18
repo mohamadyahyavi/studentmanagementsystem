@@ -1,7 +1,8 @@
-#pragma once
+#ifndef FACULTYDASHBOARD_H
+#define FACULTYDASHBOARD_H
 
 #include <QWidget>
-#include <QSqlQueryModel>
+#include "editablequerymodel.h"  // Your custom editable model
 
 namespace Ui {
 class FacultyDashboard;
@@ -20,9 +21,12 @@ private slots:
 
 private:
     Ui::FacultyDashboard *ui;
-    int m_personId;                    // person_id from users table (FK to faculty.faculty_id)
-    QSqlQueryModel *studentsModel;     // Model to hold students and grades
+    int m_personId;                     // person_id from users table (FK to faculty.faculty_id)
+    EditableQueryModel *studentsModel;  // Model to hold students + grades
 
-    void loadCourses();                // Load courses into comboBoxCourses
+    void loadCourses();                 // Load courses into comboBoxCourses
     void loadStudentsForCourse(int courseId); // Load students & grades for selected course
 };
+
+#endif // FACULTYDASHBOARD_H
+
