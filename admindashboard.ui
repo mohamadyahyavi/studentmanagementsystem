@@ -587,7 +587,7 @@
    </item>
    <item>
     <property name="text">
-     <string>Assign Faculty to Course</string>
+     <string/>
     </property>
    </item>
   </widget>
